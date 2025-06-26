@@ -6,7 +6,7 @@ export interface AppointmentCreateModel {
   customerId: number;
   appointmentDate: string;
   appointmentTime: string;
-  cancellationFee?: number; // אופציונלי
+  cancellationFee?: number;
   serviceIds: number[];
 }
 
@@ -16,5 +16,5 @@ export const createAppointment = (appointment: AppointmentCreateModel) =>
   api.post('/Appointments', appointment);
 export const updateAppointment = (id: number, appointment: AppointmentModel) =>
   api.put(`/Appointments/${id}`, appointment);
-export const deleteAppointment = (id: number) =>
-  api.delete(`/Appointments/${id}`);
+
+// אין פונקציית מחיקת תור!

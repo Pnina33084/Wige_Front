@@ -1,28 +1,35 @@
+// לקוח
 export interface CustomerModel {
-  id: number; // עדיף שיהיה חובה
-  name: string;
-  phone: string;
+  customerId: number;
+  fullName: string;
+  phoneNumber: string;
+  notes?: string;
 }
 
+// עובדת
 export interface EmployeeModel {
-  id: number;
+  employeeId: number;
   name: string;
   role: string;
+  workDays: string;
+  startHour: string; // HH:mm
+  endHour: string;   // HH:mm
 }
 
+// שירות
 export interface ServiceModel {
-  id: number;
-  name: string;
-  duration: number;
-  price: number;
+  serviceId: number;
+  serviceName: string;
+  durationMinutes: number;
 }
 
+// תור
 export interface AppointmentModel {
   appointmentId: number;
   employeeId: number;
   customerId: number;
-  appointmentDate: string;
-  appointmentTime: string;
+  appointmentDate: string; // YYYY-MM-DD
+  appointmentTime: string; // HH:mm
   cancellationFee?: number;
   serviceIds: number[];
 }

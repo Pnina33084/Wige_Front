@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import {
   getAllAppointments,
   createAppointment,
-  deleteAppointment,
+  // deleteAppointment - הוסר
 } from '../services/appointmentService';
-import { AppointmentModel } from '../types';
+import { AppointmentModel, CustomerModel, EmployeeModel, ServiceModel } from '../types';
+import { getAllCustomers } from '../services/customerService';
+import { getAllEmployees } from '../services/employeeService';
+import { getAllServices } from '../services/serviceService';
 import '../styles/AppointmentList.css';
 
 // מודל ליצירת תור חדש (לא כולל appointmentId)
@@ -19,33 +22,46 @@ interface NewAppointment {
 
 const AppointmentList: React.FC = () => {
   const [appointments, setAppointments] = useState<AppointmentModel[]>([]);
+  const [customers, setCustomers] = useState<CustomerModel[]>([]);
+  const [employees, setEmployees] = useState<EmployeeModel[]>([]);
+  const [services, setServices] = useState<ServiceModel[]>([]);
   const [newAppointment, setNewAppointment] = useState<NewAppointment>({
-    employeeId: 1, // כאן לשים מזהה עובד קיים ב-DB
-    customerId: 1, // אפשר גם כאן לשים מזהה לקוח קיים
+    employeeId: 0,
+    customerId: 0,
     appointmentDate: '',
     appointmentTime: '',
-    serviceId: 1, // אפשר גם כאן לשים מזהה שירות קיים
-    // cancellationFee: 0,
+    serviceId: 0,
   });
+
+  // טען רשימות מזהים קיימים
+  useEffect(() => {
+    fetchAppointments();
+    getAllCustomers().then(res => setCustomers(res.data));
+    getAllEmployees().then(res => setEmployees(res.data));
+    getAllServices().then(res => setServices(res.data));
+  }, []);
 
   const fetchAppointments = async () => {
     const response = await getAllAppointments();
     setAppointments(response.data);
   };
 
-  useEffect(() => {
-    fetchAppointments();
-  }, []);
-
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (
+      !newAppointment.employeeId ||
+      !newAppointment.customerId ||
+      !newAppointment.serviceId
+    ) {
+      alert('יש לבחור עובדת, לקוח ושירות קיימים!');
+      return;
+    }
     await createAppointment({
       employeeId: newAppointment.employeeId,
       customerId: newAppointment.customerId,
       appointmentDate: newAppointment.appointmentDate,
       appointmentTime: newAppointment.appointmentTime,
-      serviceIds: [newAppointment.serviceId], // מערך מזהים
-      // cancellationFee: newAppointment.cancellationFee,
+      serviceIds: [newAppointment.serviceId],
     });
     fetchAppointments();
     setNewAppointment({
@@ -54,19 +70,15 @@ const AppointmentList: React.FC = () => {
       appointmentDate: '',
       appointmentTime: '',
       serviceId: 0,
-      // cancellationFee: 0,
     });
   };
 
-  const handleDelete = async (id: number) => {
-    await deleteAppointment(id);
-    fetchAppointments();
-  };
+  // פונקציית מחיקה הוסרה
 
   return (
     <div className="appointments-container">
       <h2>תורים</h2>
-      {/* דוגמה לטופס הוספת תור */}
+      {/* טופס הוספת תור */}
       <form onSubmit={handleCreate}>
         <div className="form-row">
           <label>
@@ -88,34 +100,43 @@ const AppointmentList: React.FC = () => {
             />
           </label>
           <label>
-            מזהה לקוח:
-            <input
-              type="number"
-              placeholder="הכניסו מזהה לקוח"
+            לקוח:
+            <select
               value={newAppointment.customerId}
-              onChange={(e) => setNewAppointment({ ...newAppointment, customerId: Number(e.target.value) })}
+              onChange={e => setNewAppointment({ ...newAppointment, customerId: Number(e.target.value) })}
               required
-            />
+            >
+              <option value={0}>בחר לקוח</option>
+              {customers.map(c => (
+                <option key={c.customerId} value={c.customerId}>{c.fullName}</option>
+              ))}
+            </select>
           </label>
           <label>
-            מזהה שירות:
-            <input
-              type="number"
-              placeholder="הכניסו מזהה שירות"
+            שירות:
+            <select
               value={newAppointment.serviceId}
-              onChange={(e) => setNewAppointment({ ...newAppointment, serviceId: Number(e.target.value) })}
+              onChange={e => setNewAppointment({ ...newAppointment, serviceId: Number(e.target.value) })}
               required
-            />
+            >
+              <option value={0}>בחר שירות</option>
+              {services.map(s => (
+                <option key={s.serviceId} value={s.serviceId}>{s.serviceName}</option>
+              ))}
+            </select>
           </label>
           <label>
-            מזהה עובדת:
-            <input
-              type="number"
-              placeholder="הכניסו מזהה עובדת"
+            עובדת:
+            <select
               value={newAppointment.employeeId}
-              onChange={(e) => setNewAppointment({ ...newAppointment, employeeId: Number(e.target.value) })}
+              onChange={e => setNewAppointment({ ...newAppointment, employeeId: Number(e.target.value) })}
               required
-            />
+            >
+              <option value={0}>בחר עובדת</option>
+              {employees.map(emp => (
+                <option key={emp.employeeId} value={emp.employeeId}>{emp.name}</option>
+              ))}
+            </select>
           </label>
           <button type="submit">הוספת תור</button>
         </div>
@@ -130,7 +151,7 @@ const AppointmentList: React.FC = () => {
             <th>לקוח</th>
             <th>שירות</th>
             <th>עובדת</th>
-            <th>מחיקה</th>
+            {/* עמודת מחיקה הוסרה */}
           </tr>
         </thead>
         <tbody>
@@ -142,9 +163,7 @@ const AppointmentList: React.FC = () => {
               <td>{a.customerId}</td>
               <td>{a.serviceIds && a.serviceIds.join(', ')}</td>
               <td>{a.employeeId}</td>
-              <td>
-                <button onClick={() => handleDelete(a.appointmentId)}>🗑️</button>
-              </td>
+              {/* כפתור מחיקה הוסר */}
             </tr>
           ))}
         </tbody>

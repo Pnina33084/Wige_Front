@@ -9,8 +9,10 @@ import '../styles/ServiceList.css';
 
 const ServiceList: React.FC = () => {
   const [services, setServices] = useState<ServiceModel[]>([]);
-  // אין צורך ב-id ביצירת שירות חדש
-  const [newService, setNewService] = useState<Omit<ServiceModel, 'id'>>({ name: '', duration: 0, price: 0 });
+  const [newService, setNewService] = useState({
+    serviceName: '',
+    durationMinutes: 0,
+  });
 
   const fetchServices = async () => {
     try {
@@ -25,10 +27,15 @@ const ServiceList: React.FC = () => {
     fetchServices();
   }, []);
 
-  const handleCreate = async () => {
+  const handleCreate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newService.serviceName || !newService.durationMinutes) {
+      alert('יש למלא את כל השדות');
+      return;
+    }
     try {
       await createService(newService);
-      setNewService({ name: '', duration: 0, price: 0 });
+      setNewService({ serviceName: '', durationMinutes: 0 });
       fetchServices();
     } catch (err) {
       console.error('שגיאה ביצירת שירות', err);
@@ -48,48 +55,43 @@ const ServiceList: React.FC = () => {
     <div className="service-container">
       <h2>שירותים</h2>
 
-      <div className="form-section">
-        <input
-          type="text"
-          placeholder="שם השירות"
-          value={newService.name}
-          onChange={(e) => setNewService({ ...newService, name: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="משך (בדקות)"
-          value={newService.duration}
-          onChange={(e) => setNewService({ ...newService, duration: Number(e.target.value) })}
-        />
-        <input
-          type="number"
-          placeholder="מחיר"
-          value={newService.price}
-          onChange={(e) => setNewService({ ...newService, price: Number(e.target.value) })}
-        />
-        <button onClick={handleCreate}>הוספת שירות</button>
-      </div>
+      <form onSubmit={handleCreate} className="form-section">
+        <label>
+          שם השירות:
+          <input
+            type="text"
+            placeholder="הכנס שם שירות"
+            value={newService.serviceName}
+            onChange={(e) => setNewService({ ...newService, serviceName: e.target.value })}
+            required
+          />
+        </label>
+        <label>
+          משך (בדקות):
+          <input
+            type="number"
+            placeholder="הכנס משך בדקות"
+            value={newService.durationMinutes}
+            onChange={(e) => setNewService({ ...newService, durationMinutes: Number(e.target.value) })}
+            required
+            min={1}
+          />
+        </label>
+        <button type="submit">הוספת שירות</button>
+      </form>
 
-      <table className="services-table">
+      <table>
         <thead>
           <tr>
-            <th>מזהה</th>
-            <th>שם</th>
-            <th>משך</th>
-            <th>מחיר</th>
-            <th>מחיקה</th>
+            <th>שם שירות</th>
+            <th>משך (דקות)</th>
           </tr>
         </thead>
         <tbody>
-          {services.map((s) => (
-            <tr key={s.id}>
-              <td>{s.id}</td>
-              <td>{s.name}</td>
-              <td>{s.duration} דק'</td>
-              <td>{s.price} ₪</td>
-              <td>
-                <button onClick={() => handleDelete(s.id)}>🗑️</button>
-              </td>
+          {services.map(s => (
+            <tr key={s.serviceId}>
+              <td>{s.serviceName}</td>
+              <td>{s.durationMinutes}</td>
             </tr>
           ))}
         </tbody>

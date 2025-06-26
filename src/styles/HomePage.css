@@ -1,0 +1,256 @@
+.homepage-root {
+  min-height: 100vh;
+  background: #f8c6c6;
+  font-family: 'Heebo', Arial, sans-serif;
+}
+
+.homepage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 2rem;
+}
+
+.homepage-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.homepage-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.homepage-nav a:hover {
+  color: #e67e22;
+}
+
+.homepage-logo-area {
+  display: flex;
+  align-items: center;
+}
+
+.homepage-logo-placeholder {
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  color: #d48b8b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-left: 1rem;
+  box-shadow: 0 2px 8px #eec;
+}
+
+.homepage-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.homepage-title {
+  font-size: 2.5rem;
+  color: #222;
+  margin-bottom: 1.5rem;
+}
+
+.homepage-subtitle {
+  font-size: 2rem;
+  color: #333;
+  font-weight: 400;
+}
+.homepage-logo {
+  height: 80px;
+  object-fit: contain;
+}
+
+.homepage-logo-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.homepage-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+}
+
+.homepage-logo-big {
+  margin-bottom: 2rem;
+}
+
+.homepage-brand {
+  font-size: 3.2rem;
+  letter-spacing: 0.35rem;
+  color: #333;
+  font-family: 'Heebo', Arial, sans-serif;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  direction: ltr;
+}
+
+.homepage-desc-area {
+  margin-top: 2rem;
+}
+
+.homepage-desc {
+  font-size: 2.5rem;
+  color: #222;
+  font-family: 'Heebo', Arial, sans-serif;
+  margin: 0.7rem 0;
+  font-weight: 400;
+}
+
+.homepage-desc-bold {
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.animated-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-30px) scale(1.2);
+  animation: letterIn 0.5s forwards cubic-bezier(.23,1.09,.62,1.01);
+}
+
+@keyframes letterIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* טופס יצירת קשר */
+.contact-section {
+  margin: 3rem auto 0 auto;
+  max-width: 1200px;
+  background: #fff;
+  border: 4px solid #e67e22;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.contact-form {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 12px #0001;
+  min-width: 280px;
+}
+
+.contact-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.contact-fields {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-fields input {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-bottom: 2px solid #e67e22;
+  background: transparent;
+  font-size: 1.2rem;
+  outline: none;
+  text-align: center;
+}
+
+.contact-btn {
+  padding: 0.7rem 2.5rem;
+  border: 2px solid #e67e22;
+  background: #fff;
+  color: #e67e22;
+  border-radius: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.contact-btn:hover {
+  background: #e67e22;
+  color: #fff;
+}
+
+.contact-success {
+  color: #27ae60;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.contact-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+}
+
+.contact-info-text {
+  font-size: 2rem;
+  text-align: right;
+  direction: rtl; /* הוסיפי שורה זו */
+  margin-bottom: 1rem;
+}
+
+.contact-phone {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.contact-logo {
+  font-size: 2.5rem;
+  color: #e67e22;
+  margin-top: 1rem;
+}
+
+/* רספונסיביות לניידים */
+@media (max-width: 900px) {
+  .contact-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .contact-fields {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .contact-info {
+    align-items: flex-end;
+    margin-top: 2rem;
+  }
+}

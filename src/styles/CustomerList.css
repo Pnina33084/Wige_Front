@@ -1,52 +1,88 @@
-.customer-container {
-  background-color: #ffffff;
+.customer-list {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #eee;
+  direction: rtl;
 }
 
-.form-section {
+.customer-form {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  align-items: flex-end;
 }
 
-.form-section input {
-  padding: 0.5rem;
-  border-radius: 8px;
+.customer-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  min-width: 160px;
+  color: #6c3483;
+}
+
+.customer-form input {
+  margin-top: 0.3rem;
+  padding: 0.4rem;
+  border-radius: 4px;
   border: 1px solid #ccc;
-  width: 200px;
+  font-size: 1rem;
+  direction: rtl;
 }
 
-.form-section button {
-  background-color: #0b7285;
-  color: white;
+.customer-form button {
+  padding: 0.5rem 1.2rem;
+  background: #8e44ad;
+  color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 5px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 1.5rem;
+  height: 40px;
+  transition: background 0.2s;
 }
 
-.form-section button:hover {
-  background-color: #086172;
+.customer-form button:hover {
+  background: #6c3483;
 }
 
-.customers-table {
+.customer-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
+  background: #faf7fc;
+  margin-top: 1.5rem;
+  direction: rtl;
 }
 
-.customers-table th,
-.customers-table td {
-  border: 1px solid #ddd;
-  padding: 0.75rem;
-  text-align: center;
+.customer-table th,
+.customer-table td {
+  border: 1px solid #e5d6f3;
+  padding: 0.7rem;
+  text-align: right;
+  font-size: 1rem;
 }
 
-.customers-table th {
-  background-color: #e6f7ff;
-  color: #004085;
+.customer-table th {
+  background: #f3e6fa;
+  color: #6c3483;
+  font-weight: bold;
+}
+
+.customer-table td button {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.customer-table td button:hover {
+  background: #c0392b;
 }

@@ -1,27 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import AppointmentsPage from './pages/AppointmentsPage';
-import CustomersPage from './pages/CustomersPage';
-import EmployeesPage from './pages/EmployeesPage';
-import ServicesPage from './pages/ServicesPage';
-import HomePage from './pages/HomePage'; // Import HomePage component
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
+import AppointmentList from './components/AppointmentList';
+import CustomerList from './components/CustomerList';
+import EmployeeList from './components/EmployeeList';
+import ServiceList from './components/ServiceList';
 import './styles/App.css';
 
-const App: React.FC = () => {
+function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<HomePage />} /> {/* Add route for HomePage */}
-          <Route path="/appointments" element={<AppointmentsPage />} />
-          <Route path="/customers" element={<CustomersPage />} />
-          <Route path="/employees" element={<EmployeesPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="appointments" element={<AppointmentList />} />
+            <Route path="customers" element={<CustomerList />} />
+            <Route path="employees" element={<EmployeeList />} />
+            <Route path="services" element={<ServiceList />} />
+          </Route>
         </Routes>
       </div>
     </Router>
   );
-};
+}
 
 export default App;
