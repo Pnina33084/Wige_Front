@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   getAllEmployees,
   createEmployee,
-  // deleteEmployee - הוסר
 } from '../services/employeeService';
 import { EmployeeModel } from '../types';
 import '../styles/EmployeeList.css';
@@ -37,15 +36,13 @@ const EmployeeList: React.FC = () => {
     fetchEmployees();
   };
 
-  // פונקציית מחיקה הוסרה
-
   return (
-    <div>
-      <h2>רשימת עובדות</h2>
-      <form onSubmit={handleCreate} style={{ marginBottom: '1rem' }}>
+    <div className="employee-container">
+      <div className="employee-title">ניהול עובדות</div>
+      <form className="employee-form" onSubmit={handleCreate}>
         <input
           type="text"
-          placeholder="שם"
+          placeholder="שם העובדת"
           value={newEmployee.name}
           onChange={e => setNewEmployee({ ...newEmployee, name: e.target.value })}
           required
@@ -78,17 +75,16 @@ const EmployeeList: React.FC = () => {
           onChange={e => setNewEmployee({ ...newEmployee, endHour: e.target.value })}
           required
         />
-        <button type="submit">הוסף עובדת</button>
+        <button type="submit">הוסיפי עובדת</button>
       </form>
-      <table>
+      <table className="employee-table">
         <thead>
           <tr>
-            <th>שם</th>
+            <th>שם העובדת</th>
             <th>תפקיד</th>
             <th>ימי עבודה</th>
             <th>שעת התחלה</th>
             <th>שעת סיום</th>
-            {/* <th>מחיקה</th> */}
           </tr>
         </thead>
         <tbody>
@@ -99,9 +95,6 @@ const EmployeeList: React.FC = () => {
               <td>{emp.workDays}</td>
               <td>{emp.startHour}</td>
               <td>{emp.endHour}</td>
-              {/* <td>
-                <button onClick={() => handleDelete(emp.employeeId)}>🗑️</button>
-              </td> */}
             </tr>
           ))}
         </tbody>

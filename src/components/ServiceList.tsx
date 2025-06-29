@@ -52,10 +52,9 @@ const ServiceList: React.FC = () => {
   };
 
   return (
-    <div className="service-container">
-      <h2>שירותים</h2>
-
-      <form onSubmit={handleCreate} className="form-section">
+    <div className="services-container">
+      <div className="services-title">שירותים</div>
+      <form onSubmit={handleCreate} className="services-form">
         <label>
           שם השירות:
           <input
@@ -70,7 +69,7 @@ const ServiceList: React.FC = () => {
           משך (בדקות):
           <input
             type="number"
-            placeholder="הכנס משך בדקות"
+            placeholder="0"
             value={newService.durationMinutes}
             onChange={(e) => setNewService({ ...newService, durationMinutes: Number(e.target.value) })}
             required
@@ -79,8 +78,7 @@ const ServiceList: React.FC = () => {
         </label>
         <button type="submit">הוספת שירות</button>
       </form>
-
-      <table>
+      <table className="services-table">
         <thead>
           <tr>
             <th>שם שירות</th>

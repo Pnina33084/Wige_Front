@@ -1,33 +1,106 @@
 .homepage-root {
   min-height: 100vh;
-  background: #f8c6c6;
+  background: #e2c7c7;
   font-family: 'Heebo', Arial, sans-serif;
 }
 
-.homepage-header {
+.app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: #000 !important;
+  border-bottom: 1px solid #eee;
+  padding: 1rem 2rem;
+}
+
+.app-header a,
+.app-header .main-nav a,
+.app-header span,
+.app-header button {
+  color: #e2c7c7 !important;
+  font-weight: bold;
+  font-size: 1.35rem;
+  background: transparent;
+  border: none;
+}
+
+.app-header .main-nav {
+  background: transparent;
+  box-shadow: none;
+}
+
+.app-header .main-nav a {
+  font-size: 1.35rem;
+  letter-spacing: 1px;
+}
+
+.app-header a:hover,
+.app-header .main-nav a:hover {
+  color: #fff !important;
+}
+
+.app-header button {
+  background: #000 !important;
+  border: 2px solid #e2c7c7;
+  border-radius: 0.7rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.app-header button:hover {
+  background: #e2c7c7 !important;
+  color: #000 !important;
+}
+
+.main-nav {
   background: #000;
-  color: #fff;
-  padding: 0.5rem 2rem;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.main-nav a {
+  color: #fff; /* שנה כאן לצבע הרקע שלך אם הוא לא לבן */
+  font-weight: bold;
+  font-size: 1.35rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  letter-spacing: 1px;
+}
+
+.main-nav a:hover {
+  color: #a259c6; /* צבע הדגשה בעת מעבר עכבר */
 }
 
 .homepage-nav {
+  background: #a259c6;
+  padding: 0.7rem 2rem;
+  border-radius: 1.2rem;
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 0 0 1.5rem 0;
 }
 
 .homepage-nav a {
   color: #fff;
   text-decoration: none;
-  font-size: 1.2rem;
   font-weight: bold;
+  font-size: 1.1rem;
   transition: color 0.2s;
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.5rem;
 }
 
-.homepage-nav a:hover {
+.homepage-nav a:hover,
+.homepage-nav a.active {
   color: #e67e22;
+  background: #fff;
 }
 
 .homepage-logo-area {
@@ -69,8 +142,8 @@
   font-weight: 400;
 }
 .homepage-logo {
-  height: 80px;
-  object-fit: contain;
+  height: 60px;
+  width: auto;
 }
 
 .homepage-logo-area {
@@ -122,14 +195,14 @@
 .animated-letter {
   display: inline-block;
   opacity: 0;
-  transform: translateY(-30px) scale(1.2);
-  animation: letterIn 0.5s forwards cubic-bezier(.23,1.09,.62,1.01);
+  transform: translateY(30%);
+  animation: fadeInUp 0.7s forwards;
 }
 
-@keyframes letterIn {
+@keyframes fadeInUp {
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -253,4 +326,342 @@
     align-items: flex-end;
     margin-top: 2rem;
   }
+}
+
+.services-container {
+  background: #fff;
+  border: 4px solid #e67e22;
+  border-radius: 1.2rem;
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 4px 24px #0001;
+}
+
+.services-title {
+  font-size: 2.3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #222;
+  text-align: right;
+  direction: rtl;
+}
+
+.services-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  direction: rtl;
+}
+
+.services-form label {
+  font-size: 1.1rem;
+  color: #444;
+  margin-left: 0.5rem;
+}
+
+.services-form input {
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #e67e22;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  min-width: 120px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.services-form input:focus {
+  border-color: #a85d0e;
+}
+
+.services-form button {
+  background: #a259c6;
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1.7rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.services-form button:hover {
+  background: #7c3fa4;
+}
+
+.services-table {
+  width: 100%;
+  border-collapse: collapse;
+  direction: rtl;
+}
+
+.services-table th,
+.services-table td {
+  padding: 0.8rem 0.5rem;
+  border-bottom: 1px solid #f2d3b3;
+  text-align: right;
+  font-size: 1.1rem;
+}
+
+.services-table th {
+  background: #f8c6c6;
+  color: #a85d0e;
+  font-weight: bold;
+}
+
+.services-table tr:last-child td {
+  border-bottom: none;
+}
+
+.homepage-root img {
+  border: none;
+  margin-top: 0;
+}
+
+@media (max-width: 600px) {
+  .services-container {
+    padding: 1.2rem 0.5rem;
+  }
+  .services-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+  .services-table th,
+  .services-table td {
+    font-size: 1rem;
+    padding: 0.5rem 0.2rem;
+  }
+}
+
+.gallery-arches {
+  display: flex;
+  gap: 4vw;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 4rem 0 2rem 0;
+}
+
+.gallery-arch {
+  position: relative;
+  width: 420px;
+  height: 600px;
+  border-radius: 50% / 50%;
+  overflow: hidden;
+  box-shadow: 0 6px 32px #0002;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-arch-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.gallery-arch-text {
+  position: relative;
+  z-index: 3;
+  color: #222; /* כהה ומודגש */
+  text-align: center;
+  font-family: 'Heebo', 'Varela Round', Arial, sans-serif;
+  font-size: 2.6rem;
+  font-weight: 900;
+  top: 18%; /* ממורכז יותר לעיגול */
+  left: 0;
+  width: 100%;
+  padding: 0 1.5rem;
+  line-height: 1.2;
+  text-shadow:
+    0 2px 12px #fff,
+    0 0 2px #fff,
+    0 0 1px #fff;
+  letter-spacing: 1.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-arch-desc {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  line-height: 2.1;
+  color: #222;
+  text-shadow:
+    0 2px 12px #fff,
+    0 0 2px #fff,
+    0 0 1px #fff;
+  font-family: 'Heebo', 'Varela Round', Arial, sans-serif;
+}
+
+.gallery-arch-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.38); /* שכבה לבנה בהירה עם שקיפות */
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .gallery-arches {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .gallery-arch {
+    width: 90vw;
+    height: 60vw;
+    max-width: 400px;
+    max-height: 500px;
+  }
+}
+
+.testimonials-section {
+  margin: 4rem 0 2rem 0;
+  width: 100%;
+  text-align: center;
+}
+
+.testimonials-title {
+  font-size: 3rem;
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 2.5rem;
+  text-align: right;
+  direction: rtl;
+  padding-right: 2vw;
+}
+
+.testimonials-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.arrow-btn {
+  background: none;
+  border: none;
+  color: #e67e22;
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 0 1rem;
+  transition: color 0.2s;
+  user-select: none;
+}
+
+.arrow-btn:hover {
+  color: #a259c6;
+}
+
+.testimonials-list {
+  display: flex;
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: #111;
+  color: #fff;
+  border-radius: 2.5rem;
+  width: 270px;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 4px 24px #0002;
+  padding: 1.2rem 1.2rem 1.5rem 1.2rem;
+  position: relative;
+  border-top: 2px solid #e2c7c7;
+}
+
+.testimonial-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  color: #e2c7c7;
+  margin-bottom: 1.2rem;
+}
+
+.testimonial-icon {
+  font-size: 1.5rem;
+}
+
+.testimonial-menu {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.testimonial-content {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #fff;
+  margin-top: 0.5rem;
+  direction: rtl;
+  text-align: right;
+  line-height: 2;
+}
+
+.salon-info-section {
+  background: #181818;
+  color: #fff;
+  padding: 3.5rem 0 3rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.salon-info-content {
+  max-width: 600px;
+  width: 95vw;
+  text-align: right;
+  direction: rtl;
+}
+
+.salon-info-title {
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.salon-info-details {
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+  line-height: 2.2;
+  color: #fff;
+}
+
+.salon-info-btn {
+  background: #a259c6;
+  color: #fff;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 1rem;
+  letter-spacing: 1px;
+}
+
+.salon-info-btn:hover {
+  background: #e67e22;
+  color: #fff;
 }

@@ -1,52 +1,102 @@
+/* עיצוב כללי */
 .employee-container {
-  background-color: #fffdfc;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  border: 4px solid #e67e22;
+  border-radius: 1.2rem;
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 4px 24px #0001;
+  direction: rtl;
 }
 
-.form-section {
+.employee-title {
+  font-size: 2.3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #222;
+  text-align: right;
+  letter-spacing: 0.03em;
+}
+
+.employee-form {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.form-section input {
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  width: 200px;
+.employee-form input,
+.employee-form select {
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #e67e22;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  min-width: 120px;
+  outline: none;
+  transition: border 0.2s;
 }
 
-.form-section button {
-  background-color: #6a0572;
-  color: white;
+.employee-form input:focus,
+.employee-form select:focus {
+  border-color: #a85d0e;
+}
+
+.employee-form button {
+  background: #a259c6;
+  color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1.7rem;
+  font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.2s;
 }
 
-.form-section button:hover {
-  background-color: #4c035c;
+.employee-form button:hover {
+  background: #7c3fa4;
 }
 
-.employees-table {
+.employee-table {
   width: 100%;
   border-collapse: collapse;
+  direction: rtl;
   margin-top: 1rem;
 }
 
-.employees-table th,
-.employees-table td {
-  border: 1px solid #ddd;
-  padding: 0.75rem;
-  text-align: center;
+.employee-table th,
+.employee-table td {
+  padding: 0.8rem 0.5rem;
+  border-bottom: 1px solid #f2d3b3;
+  text-align: right;
+  font-size: 1.1rem;
 }
 
-.employees-table th {
-  background-color: #f3e6f5;
-  color: #4c035c;
+.employee-table th {
+  background: #f8c6c6;
+  color: #a85d0e;
+  font-weight: bold;
+}
+
+.employee-table tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 700px) {
+  .employee-container {
+    padding: 1.2rem 0.5rem;
+  }
+  .employee-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+  .employee-table th,
+  .employee-table td {
+    font-size: 1rem;
+    padding: 0.5rem 0.2rem;
+  }
 }

@@ -1,57 +1,134 @@
+/* עיצוב כללי לעמוד */
+.appointments-page {
+  min-height: 100vh;
+  background: #f8e1e1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
 .appointments-container {
-  background: #f7f9fb;
-  padding: 2rem;
-  border-radius: 12px;
-  margin: 2rem auto;
-  max-width: 900px;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 32px #0002;
+  max-width: 1100px;
+  width: 96vw;
+  margin: 3rem auto 2rem auto;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.appointments-title {
+  font-size: 2.3rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 2.2rem;
+  text-align: right;
+  direction: rtl;
 }
 
 .appointment-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem 2rem;
+  margin-bottom: 2.5rem;
+  direction: rtl;
+  align-items: end;
 }
 
-.form-row label {
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+.appointment-form label {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 0.3rem;
+  display: block;
 }
 
-.appointment-form input {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+.appointment-form input,
+.appointment-form select,
+.appointment-form button {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #e67e22;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  outline: none;
   margin-top: 0.2rem;
+  transition: border 0.2s;
+}
+
+.appointment-form input:focus,
+.appointment-form select:focus {
+  border-color: #a85d0e;
 }
 
 .appointment-form button {
-  background: #8e44ad;
+  background: #a259c6;
   color: #fff;
   border: none;
-  border-radius: 6px;
-  padding: 0.7rem 1.2rem;
-  cursor: pointer;
+  border-radius: 0.7rem;
+  font-size: 1.1rem;
   font-weight: bold;
-  margin-top: 1.5rem;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  transition: background 0.2s;
+}
+
+.appointment-form button:hover {
+  background: #7c3fa4;
 }
 
 .appointments-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 1.5rem;
+  direction: rtl;
   background: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 12px #0001;
 }
 
 .appointments-table th,
 .appointments-table td {
-  padding: 0.7rem;
-  border: 1px solid #e0e0e0;
-  text-align: center;
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid #f2d3b3;
+  text-align: right;
+  font-size: 1.1rem;
 }
 
 .appointments-table th {
-  background: #e8eaf6;
-  color: #5e35b1;
+  background: #f8c6c6;
+  color: #a85d0e;
+  font-weight: bold;
+}
+
+.appointments-table tr:last-child td {
+  border-bottom: none;
+}
+
+.css-13cymwt-control {
+  direction: rtl;
+  font-family: inherit;
+}
+
+@media (max-width: 900px) {
+  .appointments-container {
+    padding: 1.2rem 0.5rem;
+  }
+  .appointment-form {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .appointments-title {
+    font-size: 1.5rem;
+  }
+  .appointments-table th,
+  .appointments-table td {
+    font-size: 1rem;
+    padding: 0.6rem 0.2rem;
+  }
 }
